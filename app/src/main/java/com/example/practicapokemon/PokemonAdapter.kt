@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.practicapokemon.database.modelo.Pokemon
 
-class PokemonAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
+class PokemonAdapter(private val pokemonList: List<Pokemon>,  private val onItemClickListener: (Pokemon) -> Unit) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
     class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.pokemonImageView)
@@ -29,7 +29,13 @@ class PokemonAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.Adap
         Glide.with(holder.imageView.context)
             .load(pokemon.imagen)
             .into(holder.imageView)
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener(pokemon)
+        }
     }
+
+
 
     override fun getItemCount(): Int = pokemonList.size
 }

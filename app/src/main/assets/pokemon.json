@@ -4,8 +4,8 @@
     "tipo": "Eléctrico",
     "altura": "0.4 m",
     "peso": "6.0 kg",
-    "latitud":32,
-    "longitud":30,
+    "latitud":38.0536550,
+    "longitud": -0.8690485,
     "habilidades": "Electricidad Estática, Pararrayos",
     "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
   },
@@ -14,8 +14,8 @@
     "tipo": "Fuego",
     "altura": "1.7 m",
     "peso": "90.5 kg",
-    "latitud":32,
-    "longitud":30,
+    "latitud":38.0534285,
+    "longitud": -0.8688959,
     "habilidades": "Mar Llamas, Poder Solar",
     "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
   },
@@ -23,8 +23,8 @@
     "nombre": "Bulbasaur",
     "tipo": "Planta",
     "altura": "0.7 m",
-    "latitud":32,
-    "longitud":30,
+    "latitud":38.0538482,
+    "longitud":0.8693184,
     "peso": "6.9 kg",
     "habilidades": "Espesura, Clorofila",
     "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
@@ -34,8 +34,8 @@
     "tipo": "Agua",
     "altura": "0.5 m",
     "peso": "9.0 kg",
-    "latitud":32,
-    "longitud":30,
+    "latitud":38.0530082,
+    "longitud":-0.8690411,
     "habilidades": "Torrente, Caparazón",
     "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
   },
@@ -44,8 +44,8 @@
     "tipo": "Psíquico",
     "altura": "2.0 m",
     "peso": "122.0 kg",
-    "latitud":32,
-    "longitud":30,
+    "latitud":38.0536447,
+    "longitud":-0.8693422,
     "habilidades":"Presión,Espejomágico",
     "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"
   }

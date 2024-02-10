@@ -11,7 +11,7 @@ data class Pokemon (
     val altura: String,
     val peso: String,
     val latitud: Double,
-    val longuitud: Double,
+    val longitud: Double,
     val habilidades: String,
     val imagen: String,
 )
