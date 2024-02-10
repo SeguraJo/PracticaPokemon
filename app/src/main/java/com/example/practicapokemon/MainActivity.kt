@@ -1,61 +1,80 @@
 package com.example.practicapokemon
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.common.SignInButton
+import com.example.practicapokemon.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 100
+        private lateinit var binding: ActivityMainBinding
+        private lateinit var credentials :HashMap<String,String>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            val view = binding.root
+            setContentView(view)
 
-        // Configura GoogleSignInOptions
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
+            binding.loginButton.setOnClickListener {
+                val rememberMe = binding.rememberOption
+                if (rememberMe.isChecked) {
+                    guardarValorEnSharedPreferences()
+                }
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+                val username = binding.usernameEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
 
-        val signInButton: SignInButton = findViewById(R.id.sign_in_button)
-        signInButton.setSize(SignInButton.SIZE_STANDARD)
-        signInButton.setOnClickListener { signIn() }
-    }
+                if (username == "admin" && password == "1234") {
+                    try {
+                        val intent = Intent(this, PokemonListActivity::class.java)
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                    finish()
+                }
 
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            val intent = Intent(this, PokemonListActivity::class.java)
-            startActivity(intent)
-            finish()
-        }catch (e: ApiException) {
-                Log.w("MainActivity", "signInResult:failed code=" + e.statusCode)
             }
 
+            credentials  = obtenerValorDeSharedPreferences()
+            binding.usernameEditText.setText(credentials[USERNAME_KEY])
+            binding.passwordEditText.setText(credentials[PASSWORD_KEY])
+
+            //*borrarValorDeSharedPreferences();
         }
-}
+
+        private fun guardarValorEnSharedPreferences() {
+
+            val username_value = binding.usernameEditText.text.toString()
+            val pass_value = binding.passwordEditText.text.toString()
+
+            val prefs: SharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = prefs.edit()
+            editor.putString("username", username_value)
+            editor.putString("password", pass_value)
+            editor.apply()
+        }
+
+        private fun obtenerValorDeSharedPreferences(): HashMap<String,String> {
+            val prefs: SharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val credentials: HashMap<String,String> = HashMap<String,String>()
+            prefs.getString(USERNAME_KEY, "")?.let { credentials.put(USERNAME_KEY, it) }
+            prefs.getString(PASSWORD_KEY, "")?.let { credentials.put(PASSWORD_KEY, it) }
+            return credentials
+        }
+
+        private fun borrarValorDeSharedPreferences(){
+            val prefs: SharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            prefs.edit().clear().apply();
+        }
+
+        companion object {
+            private const val USERNAME_KEY = "username"
+            private const val PASSWORD_KEY = "password"
+            private const val PREFS_NAME = "MiPreferencia"
+        }
+    }
