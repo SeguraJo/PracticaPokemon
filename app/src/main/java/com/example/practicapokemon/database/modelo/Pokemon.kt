@@ -7,9 +7,11 @@ import androidx.room.PrimaryKey
 data class Pokemon (
     @PrimaryKey val id:Int,
     val nombre: String,
+    val tipo: String,
     val altura: String,
-    val peso: Int,
-    val latitud:Int,
+    val peso: String,
+    val latitud: Double,
+    val longuitud: Double,
     val habilidades: String,
     val imagen: String,
 )

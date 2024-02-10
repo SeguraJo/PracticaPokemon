@@ -13,9 +13,7 @@
         android:gravity="center_horizontal"
         android:padding="8dp"
         android:text="NOMBRE POKEMON"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/POKEMON"
@@ -23,24 +21,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="8dp"
-        android:text="HORA DE LLEGADA"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toEndOf="@+id/nombre_parada"
-        app:layout_constraintTop_toTopOf="parent"
-
         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_all"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horario_llegada"
-        app:layout_constraintVertical_bias="0.056" />
+        android:layout_height="0dp" />
 
 </FrameLayout>
