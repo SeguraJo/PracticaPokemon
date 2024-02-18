@@ -27,17 +27,17 @@ class PokemonListActivity : AppCompatActivity() {
         val pokemonList = gson.fromJson<List<Pokemon>>(json, type)
         val recyclerView: RecyclerView = findViewById(R.id.pokemonRecyclerView)
         // Corrección aplicada aquí
-        val adapter = PokemonAdapter(pokemonList) { pokemon ->
+        val adapter = PokemonRecyclerView(pokemonList) { pokemon ->
             println(pokemon.latitud)
             println(pokemon.longitud)
-            abrirGoogleMaps(pokemon.latitud, pokemon.longitud)
+            //abrirGoogleMaps(pokemon.latitud, pokemon.longitud)
         }
         recyclerView.adapter = adapter
     }
 
 
 
-    fun loadJSONFromAsset(context: Context, fileName: String): String? {
+    private fun loadJSONFromAsset(context: Context, fileName: String): String? {
         val json: String?
         try {
             val inputStream = context.assets.open(fileName)
@@ -53,9 +53,8 @@ class PokemonListActivity : AppCompatActivity() {
         return json
     }
 
-    fun abrirGoogleMaps(latitud: Double, longitud: Double) {
+    private fun abrirGoogleMaps(latitud: Double, longitud: Double) {
         Log.d("MapsIntentUri", "Opening URI: $longitud")
-
         val gmmIntentUri = Uri.parse("geo:$latitud,$longitud?q=$latitud,$longitud")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
