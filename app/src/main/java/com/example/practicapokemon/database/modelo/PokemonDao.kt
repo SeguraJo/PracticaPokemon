@@ -1,12 +1,21 @@
 package com.example.practicapokemon.database.modelo
 
+import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface PokemonDao {
-    @Query("SELECT * FROM pokemon ORDER BY nombre asc")
-    fun obtenerTodos(): List<Pokemon>
+    @Query("SELECT * FROM pokemon")
+    fun obtenerTodos(): Flow<List<Pokemon>>
 
-    @Insert
-    fun insertar(pokemon: Pokemon)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertar(pokemon:Pokemon)
+
+    @Query("DELETE FROM pokemon")
+    suspend fun eliminarTodos()
+
+
 }

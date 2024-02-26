@@ -12,7 +12,7 @@ class MapActivity : AppCompatActivity() {
         val latitud = intent.getDoubleExtra("latitud", 0.0)
         val longitud = intent.getDoubleExtra("longitud", 0.0)
 
-        // Carga el MapFragment y pasa las coordenadas como argumentos
+        // Carga el MapFragment y pasa las coordenadas
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.map_container, MapFragment().apply {

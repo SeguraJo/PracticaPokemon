@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practicapokemon.databinding.ActivityMainBinding
 
@@ -12,6 +11,8 @@ class MainActivity : AppCompatActivity() {
 
         private lateinit var binding: ActivityMainBinding
         private lateinit var credentials :HashMap<String,String>
+
+
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -35,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-                    finish()
                 }
 
             }

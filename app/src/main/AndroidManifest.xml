@@ -26,6 +26,9 @@
             android:name=".MapActivity"
             android:exported="false" />
         <activity
+            android:name=".PokemonListActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             tools:ignore="Instantiatable">
@@ -34,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PokemonListActivity" />
     </application>
 
 </manifest>

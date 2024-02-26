@@ -34,13 +34,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Obtiene latitud y longitud de los argumentos del Fragment
+        // Obtén latitud y longitud de los argumentos del Fragment
         val latitud = arguments?.getDouble("latitud", 0.0) ?: 0.0
         val longitud = arguments?.getDouble("longitud", 0.0) ?: 0.0
 
         // Usa las coordenadas para mostrar el marcador
         val ubicacionPokemon = LatLng(latitud, longitud)
         mMap.addMarker(MarkerOptions().position(ubicacionPokemon).title("Pokémon Aquí"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacionPokemon, 15f)) // Ajusta el zoom según necesites
+        mMap.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                ubicacionPokemon,
+                15f
+            ))
     }
 }
+
